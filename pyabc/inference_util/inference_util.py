@@ -187,6 +187,7 @@ def generate_valid_proposal(
         # unhealthy sampling detection
         n_sample += 1
         if n_sample == n_sample_soft_limit:
+            print(m_ss) # ZK
             logger.warning(
                 "Unusually many (model, parameter) samples have prior "
                 "density zero. The transition might be inappropriate."
@@ -343,6 +344,9 @@ def create_weight_function(
         prior_pd = prior_pdf(m_ss, theta_ss)
         transition_pd = transition_pdf(m_ss, theta_ss)
         # calculate weight
+        print("-----------")
+        print("m_ss: " + m_ss)
+        print("Accept weight: " + acceptance_weight + "; prior_pd: " + prior_pd "; transition_pd: " + transition_pd + "---")
         weight = acceptance_weight * prior_pd / transition_pd
         return weight
 
